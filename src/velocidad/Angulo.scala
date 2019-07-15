@@ -1,0 +1,5 @@
+package velocidad
+
+class Angulo {
+  
+}
