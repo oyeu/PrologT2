@@ -1,0 +1,5 @@
+package rectas
+
+class Sentido {
+  
+}
