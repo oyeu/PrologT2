@@ -1,5 +1,5 @@
 package rectas
 
-case class TipoVia (tipoVia:String){
+case class TipoVia(tipo : String) {
   
 }

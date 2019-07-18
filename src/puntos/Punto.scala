@@ -1,6 +1,6 @@
 
 package puntos
 
-abstract class Punto(protected var x : Int,protected var y : Int) {
+abstract class Punto(var x : Int, var y : Int) {
   
 }
