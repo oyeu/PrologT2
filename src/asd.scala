@@ -1,0 +1,5 @@
+
+
+object asd extends App {
+  
+}

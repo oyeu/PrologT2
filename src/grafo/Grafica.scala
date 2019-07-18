@@ -10,6 +10,7 @@ import org.jfree.chart.axis.CategoryAxis
 import java.awt.Color
 import java.awt.BasicStroke
 import rectas.Via
+import scala.collection.mutable.ArrayBuffer
 
 object Grafica {
   var datos : XYSeriesCollection = new XYSeriesCollection()
@@ -45,13 +46,27 @@ object Grafica {
       }
       datos.addSeries(s)
     }
+    
     arreglo.foreach(convertir(_))
     
     val plot = grafica.getXYPlot()
     val rendered = new XYLineAndShapeRenderer()
     for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesPaint(i, Color.LIGHT_GRAY)
-    for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesStroke(i, new BasicStroke(7f))
-    
+    for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesStroke(i, new BasicStroke(5f))
+    var array = new ArrayBuffer[String]()
+    val agregarAnotaciones = (via : Via) => {
+      if(!array.contains(via.origen.nombre)){
+        val textAnnotaion = new XYTextAnnotation(via.origen.nombre, via.origen.x, via.origen.y);
+        plot.addAnnotation(textAnnotaion);
+        array.+=:(via.origen.nombre)
+      }
+      if(!array.contains(via.fin.nombre)){
+        val textAnnotaion = new XYTextAnnotation(via.fin.nombre, via.fin.x, via.fin.y);
+        plot.addAnnotation(textAnnotaion);
+        array.+=:(via.fin.nombre)
+      }
+    }
+    arreglo.foreach(agregarAnotaciones(_))
     plot.setDomainGridlinesVisible(false)
     plot.setRangeGridlinesVisible(false)
     plot.setBackgroundPaint(Color.white)
