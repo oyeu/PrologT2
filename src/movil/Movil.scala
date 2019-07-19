@@ -1,7 +1,7 @@
 package movil
-import puntos.Punto
+import puntos._
 
-abstract class Movil (posicion:Punto, velocidad:Velocidad){
+abstract class Movil (posicion:Ubicacion, velocidad:Velocidad){
   
   def mover(dt:Int):Unit
   

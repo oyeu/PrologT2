@@ -1,5 +1,3 @@
-
-
-object asd extends App {
-  
+object Asd extends App {
+  println("asdasd")
 }

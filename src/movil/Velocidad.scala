@@ -1,8 +1,9 @@
-package velocidad
+package movil
 import scala.math
 
-case class Velocidad(magnitud : Int)(direccion : Angulo) {
+class Velocidad(magnitud : Int,_direccion : Angulo) {
   
-  def vx = magnitud*math.cos(direccion.valor)
-  def vy = magnitud*math.sin(direccion.valor)
+  def vx = magnitud*math.cos(_direccion.valor).toInt
+  def vy = magnitud*math.sin(_direccion.valor).toInt
+  def direccion = _direccion
 }

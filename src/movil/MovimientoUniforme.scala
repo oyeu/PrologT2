@@ -1,4 +1,5 @@
 package movil
+import puntos.Punto
 
 trait MovimientoUniforme {
   var posicion:Punto
