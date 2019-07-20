@@ -1,12 +1,18 @@
 package simulacion
 import puntos._
+import net.liftweb.json._
+import scala.io.Source
 import movil._
 object Simulacion extends App with Runnable{
   override def run(){
-    val inter = new Movil(new Ubicacion(10,10),new Velocidad(87,new Angulo(9))) {
-      def mover (dt:Int)= 1+dt
-    }
-    println(inter.getAngulo)
+   val ruta = "./src/"
+   val archivo = "parametros.json"
+   val cadena = parse(ruta + archivo)//Source.fromFile(ruta+archivo).getLines().mkString
+   println(cadena)
+   
+   /*while (true){
+     
+   }*/
   }
   run()
   

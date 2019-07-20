@@ -1,0 +1,5 @@
+package movil
+
+class Moto {
+  
+}

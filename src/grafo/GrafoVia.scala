@@ -7,7 +7,6 @@ import scalax.collection.edge.WDiEdge
 
 object GrafoVia {
   private var _g = Graph[Interseccion,WDiEdge]()
-  private var _gPruebas = Graph[Interseccion,WDiEdge]()
   
   def g = _g
   
