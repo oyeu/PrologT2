@@ -2,6 +2,6 @@ package movil
 import puntos._
 
 
-abstract class Vehiculo (posicion: Ubicacion, velocidad: Velocidad, placa: String) extends Movil(posicion, velocidad){
+abstract class Vehiculo (var posicion : Punto, var velocidad : Velocidad, p: String) extends Movil(posicion, velocidad) with MovimientoUniforme{
   
 }

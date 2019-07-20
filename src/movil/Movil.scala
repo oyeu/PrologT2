@@ -1,9 +1,9 @@
 package movil
 import puntos._
 
-abstract class Movil (posicion:Ubicacion, velocidad:Velocidad){
+abstract class Movil (p : Punto, v : Velocidad){
   
   def mover(dt:Int):Unit
   
-  def getAngulo = velocidad.direccion.valor
+  def getAngulo = v.direccion.valor
 }
