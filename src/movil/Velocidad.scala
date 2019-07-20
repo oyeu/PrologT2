@@ -7,3 +7,7 @@ class Velocidad(magnitud : Int,_direccion : Angulo) {
   def vy = magnitud*math.sin(_direccion.valor).toInt
   def direccion = _direccion
 }
+
+object Velocidad {
+  
+}

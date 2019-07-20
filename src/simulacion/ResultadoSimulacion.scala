@@ -1,5 +1,0 @@
-package simulacion
-
-class ResultadoSimulacion {
-  
-}

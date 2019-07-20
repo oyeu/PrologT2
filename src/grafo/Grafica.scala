@@ -14,7 +14,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object Grafica {
   var datos : XYSeriesCollection = new XYSeriesCollection()
-  val grafica = ChartFactory.createScatterPlot("", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
+  val grafica = ChartFactory.createScatterPlot("simuMed", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
   
   def agregarGrafica(arreglo : Array[Via]) : Unit = {
     val convertir = (a : Via) => {
@@ -71,6 +71,7 @@ object Grafica {
     plot.setRangeGridlinesVisible(false)
     plot.setBackgroundPaint(Color.white)
     plot.setRenderer(rendered)
+  
   }
   
   def obtienePanel() = {
