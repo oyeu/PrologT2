@@ -9,5 +9,11 @@ class Velocidad(magnitud : Int,_direccion : Angulo) {
 }
 
 object Velocidad {
+  def mPorKm(cantidad : Double) : Double = {
+    cantidad * 3.6
+  }
   
+  def kmPorM(cantidad : Double) : Double = {
+    cantidad / 3.6  
+  }
 }

@@ -5,7 +5,7 @@ import grafo.GraficaTest
 import scala.collection.mutable.ArrayBuffer
 
 object Borrar extends App {
-  val grafito = GrafoVia
+  /*val grafito = GrafoVia
   val niquia =new Interseccion(300, 12000, "Niquia") 
   val lauraAuto = new Interseccion(2400, 11400, "M. Laura Auto")  
   val lauraReg = new Interseccion(2400, 12600, "M. Laura Reg")
@@ -54,5 +54,6 @@ object Borrar extends App {
                   new Via(viva, gu_37S, 60, TipoVia("Calle"), Sentido.dobleVia, "63", "37S"))
   grafito.construir(vias)
   val g = new GraficaTest(vias)
-  println("NI MERGAS")
+  println("NI MERGAS")*/
+  println(movil.tiposVehiculos.MotoTaxi.generarPlaca)
 }
