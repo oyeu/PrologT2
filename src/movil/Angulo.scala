@@ -1,5 +1,5 @@
 package movil
 
-case class Angulo (var valor:Int){
+case class Angulo (var valor:Int = 0){
   
 }

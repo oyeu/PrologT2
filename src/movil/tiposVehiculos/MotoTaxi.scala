@@ -3,7 +3,7 @@ import movil._
 import java.awt.Color
 import puntos._
 
-class MotoTaxi(ubicacion : Punto, velocidad : Velocidad,placa : String) extends Vehiculo(ubicacion,velocidad,placa){
+class MotoTaxi(ubicacion : Punto,destino:Punto, velocidad : Velocidad,placa : String) extends Vehiculo(ubicacion,velocidad,placa,destino){
   val color = Color.BLUE
   val forma = "Cuadrar"
 }

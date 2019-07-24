@@ -1,5 +1,0 @@
-package movil
-
-class Mototaxi {
-  
-}
