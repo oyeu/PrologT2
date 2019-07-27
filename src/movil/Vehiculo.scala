@@ -7,6 +7,7 @@ import movil.tiposVehiculos._
 abstract class Vehiculo (var posicion : Punto, var velocidad : Velocidad, p: String, _destino:Punto) extends Movil(posicion, velocidad) with MovimientoUniforme{
   def placa = p
   def destino = _destino
+  val color : java.awt.Color
 }
 
 object Vehiculo {

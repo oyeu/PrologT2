@@ -11,9 +11,13 @@ import java.awt.Color
 import java.awt.BasicStroke
 import rectas.Via
 import scala.collection.mutable.ArrayBuffer
+import puntos._
+import movil._
 
 object Grafica {
   var datos : XYSeriesCollection = new XYSeriesCollection()
+  
+  
   val grafica = ChartFactory.createScatterPlot("simuMed", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
   
   def agregarGrafica(arreglo : Array[Via]) : Unit = {
@@ -72,6 +76,23 @@ object Grafica {
     plot.setBackgroundPaint(Color.white)
     plot.setRenderer(rendered)
   
+  }
+  
+  def agregarCarros(vehiculos:Array[Vehiculo])={
+    var vehiculosc : XYSeriesCollection = new XYSeriesCollection()
+    val plot = grafica.getXYPlot()
+    val rendered = new XYLineAndShapeRenderer()
+    var i=0
+    for(x<-vehiculos) {
+      var vehi:XYSeries = new XYSeries(x.placa)
+      vehi.add(x.posicion.x+2000, x.posicion.y+3000)
+      vehiculosc.addSeries(vehi)
+      rendered.setSeriesPaint(i, x.color)
+      println(i)
+      i=i+1
+    }
+    plot.setRenderer(rendered)
+    
   }
   
   def obtienePanel() = {
