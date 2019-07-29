@@ -4,7 +4,6 @@ import puntos._
 import java.awt.Color
 class Bus(ubicacion : Punto,destino:Punto, velocidad : Velocidad,placa : String) extends Vehiculo(ubicacion,velocidad,placa,destino){
   val color = Color.RED
-  val forma = "Cuadrar"
 }
 
 object Bus {

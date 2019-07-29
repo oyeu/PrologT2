@@ -13,50 +13,31 @@ import rectas.Via
 import scala.collection.mutable.ArrayBuffer
 import puntos._
 import movil._
+import javax.swing.JFrame
+import javax.swing.JPanel
+import java.util.Random
 
-object Grafica {
+object Grafica extends JFrame{
   var datos : XYSeriesCollection = new XYSeriesCollection()
   
   
   val grafica = ChartFactory.createScatterPlot("simuMed", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
   
-  def agregarGrafica(arreglo : Array[Via]) : Unit = {
-    val convertir = (a : Via) => {
-      val s = new XYSeries(a.origen.toString().concat(a.fin.toString()))
+  def agregarVias(arreglo : Array[Via]) : Unit = {
+    for(a <- arreglo){
+      val s = new XYSeries(a.toString())
       var x = a.origen.x.toDouble
       var y = a.origen.y.toDouble
       s.add(a.origen.x,a.origen.y)
       var auxX = true
       var auxY = true
-      while(auxX || auxY){ 
-        if(a.origen.x < a.fin.x && x < a.fin.x){
-          x+=(math.abs(a.origen.x - a.fin.x)) / (math.sqrt(math.pow(a.origen.x - a.fin.x, 2)+math.pow(a.origen.y - a.fin.y, 2)))
-        }else if(a.origen.x > a.fin.x && x > a.fin.x){
-          x-=(math.abs(a.origen.x - a.fin.x)) / (math.sqrt(math.pow(a.origen.x - a.fin.x, 2)+math.pow(a.origen.y - a.fin.y, 2)))
-        }
-        if(a.origen.y < a.fin.y && y < a.fin.y){
-          y+=(math.abs(a.origen.y - a.fin.y)) / (math.sqrt(math.pow(a.origen.x - a.fin.x, 2)+math.pow(a.origen.y - a.fin.y, 2)))
-        }else if(a.origen.y > a.fin.y && y > a.fin.y){
-          y-=(math.abs(a.origen.y - a.fin.y)) / (math.sqrt(math.pow(a.origen.x - a.fin.x, 2)+math.pow(a.origen.y - a.fin.y, 2)))
-        }
-        
-        if(x.toInt == a.fin.x - 1 || x.toInt == a.fin.x + 1 || x.toInt == a.fin.x){
-          auxX = false
-        }
-        if(y.toInt == a.fin.y - 1 || y.toInt == a.fin.y + 1 || y.toInt == a.fin.y){
-          auxY = false
-        }
-        s.add(x,y)
-      }
+      s.add(a.fin.x.toInt,a.fin.y.toInt)
       datos.addSeries(s)
     }
-    
-    arreglo.foreach(convertir(_))
-    
     val plot = grafica.getXYPlot()
     val rendered = new XYLineAndShapeRenderer()
     for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesPaint(i, Color.LIGHT_GRAY)
-    for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesStroke(i, new BasicStroke(5f))
+    for(i <- 0 to datos.getSeries.size() + 1) rendered.setSeriesStroke(i, new BasicStroke(4f))
     var array = new ArrayBuffer[String]()
     val agregarAnotaciones = (via : Via) => {
       if(!array.contains(via.origen.nombre)){
@@ -66,11 +47,21 @@ object Grafica {
       }
       if(!array.contains(via.fin.nombre)){
         val textAnnotaion = new XYTextAnnotation(via.fin.nombre, via.fin.x, via.fin.y);
+        val rand = new Random();
+        textAnnotaion.setPaint(new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat()))
         plot.addAnnotation(textAnnotaion);
         array.+=:(via.fin.nombre)
       }
     }
     arreglo.foreach(agregarAnotaciones(_))
+    val categoryAxisD  = plot.getDomainAxis();
+    categoryAxisD.setAxisLineVisible(false);
+    categoryAxisD.setTickMarksVisible(false);
+    categoryAxisD.setVisible(false);
+    val categoryAxisR  = plot.getRangeAxis();
+    categoryAxisR.setAxisLineVisible(false);
+    categoryAxisR.setTickMarksVisible(false);
+    categoryAxisR.setVisible(false);
     plot.setDomainGridlinesVisible(false)
     plot.setRangeGridlinesVisible(false)
     plot.setBackgroundPaint(Color.white)
@@ -78,26 +69,34 @@ object Grafica {
   
   }
   
-  def agregarCarros(vehiculos:Array[Vehiculo])={
-    var vehiculosc : XYSeriesCollection = new XYSeriesCollection()
-    val plot = grafica.getXYPlot()
-    val rendered = new XYLineAndShapeRenderer()
-    var i=0
+  def agregarVehiculos(vehiculos:Array[Vehiculo])={
     for(x<-vehiculos) {
       var vehi:XYSeries = new XYSeries(x.placa)
-      vehi.add(x.posicion.x+2000, x.posicion.y+3000)
-      vehiculosc.addSeries(vehi)
-      rendered.setSeriesPaint(i, x.color)
-      println(i)
-      i=i+1
+      vehi.addOrUpdate(x.posicion.x + 300, x.posicion.y)
+      datos.addSeries(vehi)
     }
-    plot.setRenderer(rendered)
+  }
+  def graficarVehiculos (vehiculos:Array[Vehiculo]){
+    Grafica.agregarVehiculos(vehiculos)
+    var panel = Grafica.obtienePanel()
+    this.setSize(2000,600);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.add(panel);
+    this.setVisible(true);
     
   }
   
+  def graficarVias (arreglo : Array[Via]){
+    Grafica.agregarVias(arreglo)
+    var panel = Grafica.obtienePanel()
+    this.setSize(2000,600);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.add(panel);
+    this.setVisible(true);
+  }
   def obtienePanel() = {
     new ChartPanel(grafica)
   }
+  
 }
-
 
