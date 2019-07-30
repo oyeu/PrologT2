@@ -4,10 +4,11 @@ import scala.util.Random
 import scala.collection.mutable.ArrayBuffer
 import movil.tiposVehiculos._
 
-abstract class Vehiculo (var posicion : Punto, var velocidad : Velocidad, p: String, _destino:Punto) extends Movil(posicion, velocidad) with MovimientoUniforme{
+abstract class Vehiculo (var posicion : Punto,var destino: Option[Interseccion] , var velocidad : Velocidad, p: String, _destinofinal:Interseccion) extends Movil(posicion, velocidad) with MovimientoUniforme{
   def placa = p
-  def destino = _destino
+  def destinofinal = _destinofinal
   val color : java.awt.Color
+  destino=destino
 }
 
 object Vehiculo {

@@ -88,7 +88,6 @@ object Grafica {
       vehi.add(x.posicion.x+2000, x.posicion.y+3000)
       vehiculosc.addSeries(vehi)
       rendered.setSeriesPaint(i, x.color)
-      println(i)
       i=i+1
     }
     plot.setRenderer(rendered)

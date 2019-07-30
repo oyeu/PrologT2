@@ -22,6 +22,11 @@ object GrafoVia {
       }
     arreglo.foreach(convertir(_))
   }
+  
+  //def rutaMasCorta(a,b :Interseccion):Array[Interseccion] = {}
+    
+    
+  
 
 }
 
