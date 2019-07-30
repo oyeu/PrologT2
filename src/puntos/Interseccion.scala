@@ -1,7 +1,7 @@
 package puntos
 import scala.collection.mutable.ArrayBuffer
 
-class Interseccion(x: Int,y: Int, _nombre : String = "") extends Punto(x,y){
+class Interseccion(x: Double,y: Double, _nombre : String = "") extends Punto(x,y){
   override def toString() : String = {
     nombre
   }
@@ -18,7 +18,7 @@ object Interseccion {
   "ig65" -> new Interseccion(5400, 10500, "65 Igu"),
   "robledo" -> new Interseccion(5400, 1500, "Exito Rob"),
   "colReg" -> new Interseccion(8250, 12000, "Col Reg"),
-  "colFerr" -> new Interseccion(8250, 15000, "Col Ferr"),
+  //"colFerr" -> new Interseccion(8250, 15000, "Col Ferr"),
   "col65" -> new Interseccion(8250, 10500, "Col 65"),
   "col80" -> new Interseccion(8250, 1500, "Col 80"),
   "juanOr" -> new Interseccion(10500, 19500, "Sn Juan Ori"),  

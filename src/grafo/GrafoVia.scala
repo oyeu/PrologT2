@@ -1,14 +1,19 @@
 package grafo
 import math.sqrt , math.pow
-import puntos.Interseccion
+import puntos._
 import rectas.Via
 import scalax.collection.Graph
+import scalax.collection.GraphPredef._, scalax.collection.GraphEdge._
 import scalax.collection.edge.WDiEdge
+import scalax.collection.edge.Implicits._
+import scalax.collection.GraphTraversal._
+import scalax.collection.GraphLike
+
 
 object GrafoVia {
-  private var _g = Graph[Interseccion,WDiEdge]()
-  
+  var _g = Graph[Punto,WDiEdge]()
   def g = _g
+  
   
   def construir(arreglo : Array[Via]) = {
     val convertir = (a : Via) => {
@@ -23,11 +28,13 @@ object GrafoVia {
     arreglo.foreach(convertir(_))
   }
   
-  //def rutaMasCorta(a,b :Interseccion):Array[Interseccion] = {}
-    
-    
-  
-
+  def rutaMasCorta(a:Punto,b:Punto,grafo:Graph[Punto,WDiEdge]):List[Punto] = {
+    type T = grafo.NodeT
+    val a1:T=grafo.get(a)
+    val a3:T=grafo.get(b)
+    val fin=a1.shortestPathTo(a3).get.nodes.map(_.toOuter).toList
+    fin
+  }
 }
 
 

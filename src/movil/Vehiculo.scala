@@ -3,13 +3,16 @@ import puntos._
 import scala.util.Random
 import scala.collection.mutable.ArrayBuffer
 import movil.tiposVehiculos._
+import grafo._
 
 
 
-abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto) extends Movil(pos, vel) with MovimientoUniforme{
+abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto, camino:List[Punto]) extends Movil(pos, vel,camino) with MovimientoUniforme{
   def placa = p
   val color : java.awt.Color
   def destino=_destino
+  vel.direccion.valor_=(pos,camino.head)
+  println(vel.direccion.valor)
 }
 
 object Vehiculo {
@@ -24,15 +27,21 @@ object Vehiculo {
        for(j <- 0 to i){
          val vel = (rand.nextInt((Vmax - Vmin)) + Vmin).toInt
          val origen = inter((rand.nextInt((inter.length)).toInt))._2
-         val destino = inter((rand.nextInt((inter.length)).toInt))._2
+         println(origen)
+         var destino = inter((rand.nextInt((inter.length)).toInt))._2
+         while(origen==destino){
+           destino = inter((rand.nextInt((inter.length)).toInt))._2
+         }
+         val coordenada = new Coordenada(origen.x,origen.y)
+         val camino = GrafoVia.rutaMasCorta(origen, destino, GrafoVia.g).drop(1)
+         println(camino)
          vehiculos += seleccionarVehiculo(contador)
-       
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
-           case 0 => new Carro(origen,destino,new Velocidad(vel,Angulo()),Carro.generarPlaca)
-           case 1 => new Moto(origen,destino,new Velocidad(vel,Angulo()),Moto.generarPlaca)
-           case 2 => new Bus(origen,destino,new Velocidad(vel,Angulo()),Bus.generarPlaca)
-           case 3 => new Camion(origen,destino,new Velocidad(vel,Angulo()),Camion.generarPlaca)
-           case _ => new MotoTaxi(origen,destino,new Velocidad(vel,Angulo()),MotoTaxi.generarPlaca)
+           case 0 => new Carro(coordenada,destino,new Velocidad(vel,Angulo()),Carro.generarPlaca,camino)
+           case 1 => new Moto(coordenada,destino,new Velocidad(vel,Angulo()),Moto.generarPlaca,camino)
+           case 2 => new Bus(coordenada,destino,new Velocidad(vel,Angulo()),Bus.generarPlaca,camino)
+           case 3 => new Camion(coordenada,destino,new Velocidad(vel,Angulo()),Camion.generarPlaca,camino)
+           case _ => new MotoTaxi(coordenada,destino,new Velocidad(vel,Angulo()),MotoTaxi.generarPlaca,camino)
          }
        }
        contador+=1

@@ -19,11 +19,11 @@ import java.util.Random
 
 object Grafica extends JFrame{
   var datos : XYSeriesCollection = new XYSeriesCollection()
-  
-  
+  var prueba:ArrayBuffer[XYSeries] = ArrayBuffer()
   val grafica = ChartFactory.createScatterPlot("simuMed", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
   
   def graficarVias(arreglo : Array[Via]) : Unit = {
+    
     for(a <- arreglo){
       val s = new XYSeries(a.toString())
       var x = a.origen.x.toDouble
@@ -33,6 +33,7 @@ object Grafica extends JFrame{
       var auxY = true
       s.add(a.fin.x.toInt,a.fin.y.toInt)
       datos.addSeries(s)
+      println()
     }
     val plot = grafica.getXYPlot()
     val rendered = new XYLineAndShapeRenderer()
@@ -75,10 +76,13 @@ object Grafica extends JFrame{
   }
   
   def graficarVehiculos(vehiculos:Array[Vehiculo])={
+    
+    for(x<-prueba)datos.removeSeries(x)
+    prueba.clear()
     for(x<-vehiculos) {
-
       var vehi : XYSeries = new XYSeries(x.placa)
-      vehi.add(x.posicion.x + 300, x.posicion.y + 300)
+      prueba+=vehi
+      vehi.add(x.posicion.x + 90, x.posicion.y + 90)
       datos.addSeries(vehi)
     }
     var panel = Grafica.obtienePanel()
@@ -86,6 +90,7 @@ object Grafica extends JFrame{
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(panel);
     this.setVisible(true);
+    
   }
   
   def obtienePanel() = {

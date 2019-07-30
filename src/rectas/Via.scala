@@ -1,5 +1,5 @@
 package rectas
-import puntos.Interseccion
+import puntos._
 
 class Via(origenR : Interseccion, finR : Interseccion,velMax : Int,
           tipo : TipoVia,val sentido : Sentido,numero : String,val _nombre : String) extends Recta{

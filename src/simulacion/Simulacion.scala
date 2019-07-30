@@ -15,20 +15,30 @@ import org.jfree.chart.axis.CategoryAxis
 
 
 object Simulacion extends App with Runnable{
-  override def run(){
    var t=0
    var dt=1
    var tRefresh = 1
    val grafito = GrafoVia
    val intersecciones = Interseccion.cargarIntersecciones
    val vias = Via.cargarVias(intersecciones)
-   val vehiculos =  Vehiculo.crearVehiculos(50, 40, Array(0.4,0.3,0.15,0.1,0.05),intersecciones,100,60)
    grafito.construir(vias)
-
+   val vehiculos =  Vehiculo.crearVehiculos(50, 40, Array(0.4,0.3,0.15,0.1,0.05),intersecciones,100,60)
+   
+   run()
+   
+   override def run(){
    Grafica.graficarVias(vias)
    Grafica.graficarVehiculos(vehiculos)
+     while(true){
+       vehiculos.map(_.mover(dt))
+       
+       t=t+dt
+       Grafica.graficarVehiculos(vehiculos)
+       Thread.sleep(30)
+     }
+   
   }
-  run()
+   
 }
    
    

@@ -1,10 +1,10 @@
 package puntos
 
-abstract class Punto(private var _x : Int, private var _y : Int) {
+abstract class Punto(private var _x : Double, private var _y : Double) {
   
   def x=_x
   def y=_y
   
-  def x_=(x:Int)= _x = x
-  def y_=(y:Int)= _y = y
+  def x_=(x:Double)= _x = x
+  def y_=(y:Double)= _y = y
 }
