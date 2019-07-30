@@ -23,7 +23,7 @@ object Grafica extends JFrame{
   
   val grafica = ChartFactory.createScatterPlot("simuMed", "", "", datos, PlotOrientation.VERTICAL, false, false ,false);
   
-  def agregarVias(arreglo : Array[Via]) : Unit = {
+  def graficarVias(arreglo : Array[Via]) : Unit = {
     for(a <- arreglo){
       val s = new XYSeries(a.toString())
       var x = a.origen.x.toDouble
@@ -66,34 +66,27 @@ object Grafica extends JFrame{
     plot.setRangeGridlinesVisible(false)
     plot.setBackgroundPaint(Color.white)
     plot.setRenderer(rendered)
+    var panel = Grafica.obtienePanel()
+    this.setSize(2000,600);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.add(panel);
+    this.setVisible(true);
   
   }
   
-  def agregarVehiculos(vehiculos:Array[Vehiculo])={
+  def graficarVehiculos(vehiculos:Array[Vehiculo])={
     for(x<-vehiculos) {
-      var vehi:XYSeries = new XYSeries(x.placa)
-      vehi.addOrUpdate(x.posicion.x + 300, x.posicion.y)
+      var vehi : XYSeries = new XYSeries(x.placa)
+      vehi.add(x.posicion.x + 300, x.posicion.y + 300)
       datos.addSeries(vehi)
     }
-  }
-  def graficarVehiculos (vehiculos:Array[Vehiculo]){
-    Grafica.agregarVehiculos(vehiculos)
     var panel = Grafica.obtienePanel()
     this.setSize(2000,600);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(panel);
     this.setVisible(true);
-    
   }
   
-  def graficarVias (arreglo : Array[Via]){
-    Grafica.agregarVias(arreglo)
-    var panel = Grafica.obtienePanel()
-    this.setSize(2000,600);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.add(panel);
-    this.setVisible(true);
-  }
   def obtienePanel() = {
     new ChartPanel(grafica)
   }
