@@ -2,7 +2,7 @@ package movil.tiposVehiculos
 import movil._
 import java.awt.Color
 import puntos._
-class Moto(ubicacion : Punto,destino:Interseccion, velocidad : Velocidad,placa : String) extends Vehiculo(ubicacion,None,velocidad,placa,destino){
+class Moto(ubicacion : Punto,destino:Punto, velocidad : Velocidad,placa : String) extends Vehiculo(ubicacion,velocidad,placa,destino){
   val color = Color.BLUE
   val forma = "Cuadrar"
 }

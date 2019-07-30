@@ -22,33 +22,14 @@ object Simulacion extends App with Runnable{
    val grafito = GrafoVia
    val intersecciones = Interseccion.cargarIntersecciones
    val vias = Via.cargarVias(intersecciones)
-   val vehiculos =  Vehiculo.crearVehiculos(50, 40, Array(0.4,0.3,0.15,0.1,0.05),intersecciones)
+   val vehiculos =  Vehiculo.crearVehiculos(50, 40, Array(0.4,0.3,0.15,0.1,0.05),intersecciones,100,60)
    grafito.construir(vias)
-   //val g = new GraficaTest(vias)
-   Grafica.agregarCarros(vehiculos)
-   println(grafito)
-   val (n1,n2) = (-8,-8)
-   println(n2-n1)
-   
-     println(grafito.g)
-   
-   
-  
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-  // for(x<-vehiculos) println(s"${x.posicion} con placas ${x.placa} con destino a ${x.destino}")
-  //println(s"En total hay ${vehiculos.length} vehiculos")
+
+   Grafica.graficarVias(vias)
+   Grafica.graficarVehiculos(vehiculos)
   }
   run()
-  
 }
+   
+   
+   
