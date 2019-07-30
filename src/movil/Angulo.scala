@@ -13,7 +13,7 @@ case class Angulo (var _valor:Double = 0){
     case (p1,p2) if(p1.x > p2.x  && p1.y== p2.y) => _valor=180
     case (p1,p2) if(p1.x > p2.x  && p1.y > p2.y) => _valor=180+Angulo.convertirRadianes(math.atan2(math.abs(p2.y-p1.y), math.abs(p2.x-p1.x)))
     case (p1,p2) if(p1.x == p2.x && p1.y > p2.y) => _valor=270
-    case (p1,p2) if(p1.x < p2.x  && p1.y > p2.y) => _valor=270+Angulo.convertirRadianes(math.atan2(math.abs(p2.y-p1.y), math.abs(p2.x-p1.x)))
+    case (p1,p2) if(p1.x < p2.x  && p1.y > p2.y) => _valor=360-Angulo.convertirRadianes(math.atan2(math.abs(p2.y-p1.y), math.abs(p2.x-p1.x)))
   }
   }
   def valor = _valor
