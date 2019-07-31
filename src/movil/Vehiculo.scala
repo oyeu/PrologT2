@@ -37,10 +37,10 @@ object Vehiculo {
          println(camino)
          vehiculos += seleccionarVehiculo(contador)
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
-           case 0 => new Carro(coordenada,destino,new Velocidad(vel,Angulo()),Carro.generarPlaca,camino)
-           case 1 => new Moto(coordenada,destino,new Velocidad(vel,Angulo()),Moto.generarPlaca,camino)
-           case 2 => new Bus(coordenada,destino,new Velocidad(vel,Angulo()),Bus.generarPlaca,camino)
-           case 3 => new Camion(coordenada,destino,new Velocidad(vel,Angulo()),Camion.generarPlaca,camino)
+           case 0 => new movil.tiposVehiculos.Carro(coordenada,destino,new Velocidad(vel,Angulo()),Carro.generarPlaca,camino)
+           case 1 => new movil.tiposVehiculos.Moto(coordenada,destino,new Velocidad(vel,Angulo()),Moto.generarPlaca,camino)
+           case 2 => new movil.tiposVehiculos.Bus(coordenada,destino,new Velocidad(vel,Angulo()),Bus.generarPlaca,camino)
+           case 3 => new movil.tiposVehiculos.Camion(coordenada,destino,new Velocidad(vel,Angulo()),Camion.generarPlaca,camino)
            case _ => new MotoTaxi(coordenada,destino,new Velocidad(vel,Angulo()),MotoTaxi.generarPlaca,camino)
          }
        }
