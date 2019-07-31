@@ -12,12 +12,13 @@ import org.jfree.chart.plot.PlotOrientation
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer
 import org.jfree.chart.annotations.XYTextAnnotation
 import org.jfree.chart.axis.CategoryAxis
+import util.control.Breaks._
 
 
 object Simulacion extends App with Runnable{
    var t=0
    var dt=1
-   var tRefresh = 1
+   var tRefresh = 10
    val grafito = GrafoVia
    val intersecciones = Interseccion.cargarIntersecciones
    val vias = Via.cargarVias(intersecciones)
@@ -31,10 +32,12 @@ object Simulacion extends App with Runnable{
    Grafica.graficarVehiculos(vehiculos)
      while(true){
        vehiculos.map(_.mover(dt))
-       
        t=t+dt
        Grafica.graficarVehiculos(vehiculos)
-       Thread.sleep(30)
+       var cont=0
+       for (x<-vehiculos) if(!x.fin) cont+=1
+       if(cont==vehiculos.length) {println(t); break}
+       Thread.sleep(tRefresh)
      }
    
   }

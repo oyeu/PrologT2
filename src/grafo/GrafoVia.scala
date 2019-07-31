@@ -35,6 +35,7 @@ object GrafoVia {
     val fin=a1.shortestPathTo(a3).get.nodes.map(_.toOuter).toList
     fin
   }
+  
 }
 
 

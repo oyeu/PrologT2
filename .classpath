@@ -7,9 +7,5 @@
 	<classpathentry kind="lib" path="D:/Desktop/prolog/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="D:/Desktop/prolog/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="lib" path="D:/Desktop/prolog/lift-json_2.12-3.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Downloads/graph-core_2.12-1.12.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Downloads/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Downloads/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Downloads/lift-json_2.12-3.3.0(1).jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -12,7 +12,6 @@ abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto
   val color : java.awt.Color
   def destino=_destino
   vel.direccion.valor_=(pos,camino.head)
-  println(vel.direccion.valor)
 }
 
 object Vehiculo {
@@ -27,14 +26,12 @@ object Vehiculo {
        for(j <- 0 to i){
          val vel = (rand.nextInt((Vmax - Vmin)) + Vmin).toInt
          val origen = inter((rand.nextInt((inter.length)).toInt))._2
-         println(origen)
          var destino = inter((rand.nextInt((inter.length)).toInt))._2
          while(origen==destino){
            destino = inter((rand.nextInt((inter.length)).toInt))._2
          }
          val coordenada = new Coordenada(origen.x,origen.y)
          val camino = GrafoVia.rutaMasCorta(origen, destino, GrafoVia.g).drop(1)
-         println(camino)
          vehiculos += seleccionarVehiculo(contador)
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
            case 0 => new movil.tiposVehiculos.Carro(coordenada,destino,new Velocidad(vel,Angulo()),Carro.generarPlaca,camino)
