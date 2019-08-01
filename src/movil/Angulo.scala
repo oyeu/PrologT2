@@ -2,8 +2,8 @@ package movil
 import puntos._
 import math._
 
-case class Angulo (var _valor:Double = 0){
-  def valor_=(tupla:(Punto,Punto)) ={
+case class Angulo (private var _valor:Double = 0){
+  def valor_=[T<:Punto](tupla:(T,T)) ={
     val rad=math.atan2(math.abs(tupla._2.y-tupla._1.y),math abs (tupla._2.x-tupla._1.x))
     tupla match{
     case (p1,p2) if(p1.y == p2.y && p1.x < p2.x) => _valor=0
