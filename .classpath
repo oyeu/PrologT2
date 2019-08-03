@@ -7,5 +7,10 @@
 	<classpathentry kind="lib" path="D:/Desktop/prolog/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="D:/Desktop/prolog/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="lib" path="D:/Desktop/prolog/lift-json_2.12-3.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/graph-core_2.12-1.12.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/lift-json_2.12-3.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/paranamer-2.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
