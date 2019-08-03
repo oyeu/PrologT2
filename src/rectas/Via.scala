@@ -1,8 +1,8 @@
 package rectas
 import puntos._
 
-class Via(val origenR : Interseccion, val finR : Interseccion,val elMax : Int,
-          val tipo : TipoVia,val sentido : Sentido,val numero : String,val _nombre : String) extends Recta{
+class Via(origenR : Interseccion, finR : Interseccion,velMax : Int,
+          tipo : TipoVia,val sentido : Sentido,numero : String,val _nombre : String) extends Recta{
   type T = Interseccion
   val origen:T = origenR
   val fin:T = finR

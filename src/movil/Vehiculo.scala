@@ -11,6 +11,7 @@ abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto
   def placa = p
   val color : java.awt.Color
   def destino=_destino
+  vel.direccion.valor_=(pos,camino.head)
 }
 
 object Vehiculo {
