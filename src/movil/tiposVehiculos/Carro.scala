@@ -1,13 +1,8 @@
 package movil.tiposVehiculos
 import movil._
-import java.awt.Color
 import puntos._
 
 class Carro(ubicacion : Punto,destino:Punto, velocidad : Velocidad,placa : String,camino:List[Punto]) extends Vehiculo(ubicacion,velocidad,placa,destino,camino){
-  val color = Color.BLACK
-  val forma = "Cuadrar"
-  
-  
 }
 object Carro {
   def generarPlaca : String = {

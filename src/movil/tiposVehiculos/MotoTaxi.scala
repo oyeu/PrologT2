@@ -4,8 +4,6 @@ import java.awt.Color
 import puntos._
 
 class MotoTaxi(ubicacion : Punto,destino:Punto, velocidad : Velocidad,placa : String,camino:List[Punto]) extends Vehiculo(ubicacion,velocidad,placa,destino,camino){
-  val color = Color.BLUE
-  val forma = "Cuadrar"
 
 }
 object MotoTaxi {

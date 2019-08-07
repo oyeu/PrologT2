@@ -54,7 +54,8 @@ object Grafica extends JFrame{
       if(!array.contains(via.fin.nombre)){
         val textAnnotaion = new XYTextAnnotation(via.fin.nombre, via.fin.x, via.fin.y);
         val rand = new Random();
-        textAnnotaion.setPaint(via.fin.Color)
+        val Color = new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat())
+        textAnnotaion.setPaint(Color)
         plot.addAnnotation(textAnnotaion);
         array.+=:(via.fin.nombre)
       }

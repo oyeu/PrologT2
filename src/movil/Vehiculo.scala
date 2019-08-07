@@ -9,7 +9,6 @@ import grafo._
 
 abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto, camino:List[Punto]) extends Movil(pos, vel,camino) with MovimientoUniforme{
   def placa = p
-  val color : java.awt.Color
   def destino=_destino
   vel.direccion.valor_=(pos,camino.head)
 }

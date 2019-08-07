@@ -1,11 +1,7 @@
 package puntos
 import scala.collection.mutable.ArrayBuffer
-import java.awt.Color
-import java.util.Random
 
 class Interseccion(x: Double,y: Double, _nombre : String = "") extends Punto(x,y){
-  private val rand = new Random();
-  val Color = new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat())
   override def toString() : String = {
     nombre
   }
