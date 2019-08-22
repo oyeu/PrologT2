@@ -75,9 +75,6 @@ object Simulacion extends App with Runnable{
    val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist)
    json.escribirDatos(resultados)
    
-  // for(x<-vehiculos) println(s"${x.posicion} con placas ${x.placa} con destino a ${x.destino}")
-  //println(s"En total hay ${vehiculos.length} vehiculos")
-   
    run()
    
    override def run(){

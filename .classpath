@@ -3,14 +3,11 @@
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/Desktop/prolog/graph-core_2.12-1.12.5.1.jar"/>
-	<classpathentry kind="lib" path="D:/Desktop/prolog/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="D:/Desktop/prolog/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="D:/Desktop/prolog/lift-json_2.12-3.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/graph-core_2.12-1.12.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/lift-json_2.12-3.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sebas/Documents/GitHub/PrologT2/Librerias/paranamer-2.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/graph-core_2.12-1.12.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/lift-json_2.12-3.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/neo4j-java-driver-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/paranamer-2.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

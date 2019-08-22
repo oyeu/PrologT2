@@ -18,7 +18,7 @@ class Json{
   
   def cargarDatos(): Parametros = {
     implicit val formats = DefaultFormats
-    val url = "C:/Users/sebas/Documents/GitHub/PrologT2/src/"
+    val url = "./src/"
     val archivo = "parametros.json"
     val cadena: String = Source.fromFile(url+archivo).getLines.mkString
     val json = parse(cadena)
@@ -68,7 +68,7 @@ class Json{
   
     println(prettyRender(json))
     println(json.toString())
-    val fw = new FileWriter("C:/Users/sebas/Documents/GitHub/PrologT2/src/resultadosSimulacion.json")
+    val fw = new FileWriter("./src/resultadosSimulacion.json")
     
     fw.write(json.toString())
     fw.close()
