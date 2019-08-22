@@ -1,5 +1,6 @@
 package movil
 import scala.math
+import rectas.Angulo
 
 class Velocidad(magnitud : Int,_direccion : Angulo) {
   

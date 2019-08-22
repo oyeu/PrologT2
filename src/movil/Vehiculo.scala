@@ -4,13 +4,14 @@ import scala.util.Random
 import scala.collection.mutable.ArrayBuffer
 import movil.tiposVehiculos._
 import grafo._
+import rectas._
 
 
 
-abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto, camino:List[Punto]) extends Movil(pos, vel,camino) with MovimientoUniforme{
+
+abstract class Vehiculo (pos : Punto, vel : Velocidad, p: String, _destino:Punto, camino:List[Punto],vias:List[Via]) extends Movil(pos, vel,camino) with MovimientoUniforme{
   def placa = p
   def destino=_destino
-  vel.direccion.valor_=(pos,camino.head)
 }
 
 object Vehiculo {
@@ -29,7 +30,7 @@ object Vehiculo {
          while(origen==destino){
            destino = inter((rand.nextInt((inter.length)).toInt))._2
          }
-         val coordenada = new Coordenada(origen.x,origen.y)
+         val coordenada = Punto(origen.x,origen.y)
          val camino = GrafoVia.rutaMasCorta(origen, destino, GrafoVia.g).drop(1)
          vehiculos += seleccionarVehiculo(contador)
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
