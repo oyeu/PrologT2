@@ -2,7 +2,7 @@ package movil
 import scala.math
 import rectas.Angulo
 
-class Velocidad(magnitud : Int,_direccion : Angulo) {
+case class Velocidad(magnitud : Int,_direccion : Angulo) {
   
   def vx = magnitud*math.cos(_direccion.valor.toRadians)
   def vy = magnitud*math.sin(_direccion.valor.toRadians)
