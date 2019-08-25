@@ -16,7 +16,7 @@ import org.jfree.chart.annotations.XYTextAnnotation
 import org.jfree.chart.axis.CategoryAxis
 import util.control.Breaks._
 import json._
-import ResultadosSimulacion._
+import resultados.ResultadoIntersecciones
 import parametros._
 import resultados._
 import scalax.collection.Graph

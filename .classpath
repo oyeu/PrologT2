@@ -9,5 +9,11 @@
 	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/lift-json_2.12-3.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/neo4j-java-driver-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/simulacion Scala/Librerias/paranamer-2.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/graph-core_2.12-1.12.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/lift-json_2.12-3.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/neo4j-java-driver-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ESTELA/Documents/GitHub/PrologT2/Librerias/paranamer-2.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
