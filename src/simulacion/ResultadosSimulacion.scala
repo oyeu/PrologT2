@@ -23,9 +23,9 @@ case class ResultadosSimulacion (vehiculos: ResultadoVehiculos, mallaVial: Resul
     longitudes.sum/longitudes.size
   }
   
-  def distanciaRecorrida(vehiculos:Array[Vehiculo],grafo:Graph[Punto,WDiEdge]):Array[Double]={
+  /*def distanciaRecorrida(vehiculos:Array[Vehiculo],grafo:Graph[Punto,WDiEdge]):Array[Double]={
    type T = grafo.NodeT
    val distancias =for(x<-vehiculos) yield (grafo.get(x.posicion).shortestPathTo(grafo.get(x.destino))).get.weight 
    distancias
-  }
+  }*/
 }

@@ -1,20 +1,16 @@
 package rectas
 
-protected class Sentido {
-  var isDobleVia : Boolean = _
+protected case class Sentido(var _isDobleVia : Boolean) {
+  def isDobleVia = _isDobleVia
 }
 
 object Sentido {
   def dobleVia : Sentido = {
-    var aux = new Sentido
-    aux.isDobleVia = true
-    aux
+    Sentido(true)
   }
   
   def unaVia : Sentido = {
-    var aux = new Sentido
-    aux.isDobleVia = false
-    aux 
+    Sentido(false)
   }
 }
 

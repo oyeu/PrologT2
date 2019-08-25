@@ -26,18 +26,10 @@ import scalax.collection.edge.Implicits._
 import scalax.collection.GraphTraversal._
 import scalax.collection.GraphLike
 
-
-
 object Simulacion extends App with Runnable{
   
-   //implicit val formats = DefaultFormats
-   //val readmeText : Iterator[String] = Source.fromFile("C:/Users/Daniel Gallego/Desktop/Proyecto/src/tests/ParametrosSimulacion.json").getLines
-   //val json = parse(readmeText.toString())
-    
    val json = new Json()
    var parametros = json.cargarDatos()
-  //a.escribirDatos("C:/Users/Daniel Gallego/Desktop/PrologT2-master/src/" + "resultadosSimulacion.json", new ResultadosSimulacion(3))
-     
    var t=0
    var dt= parametros.dt
    var tRefresh = parametros.tRefresh
@@ -47,8 +39,9 @@ object Simulacion extends App with Runnable{
    grafito.construir(vias)
    val vehiculos =  Vehiculo.crearVehiculos(parametros.vehiculos.minimo, parametros.velocidad.minimo, 
        Array(parametros.proporciones.carros, parametros.proporciones.motos, parametros.proporciones.buses, parametros.proporciones.camiones,
-           parametros.proporciones.motoTaxis), intersecciones,parametros.vehiculos.maximo,parametros.velocidad.maximo)
-   
+           parametros.proporciones.motoTaxis),parametros.vehiculos.maximo,parametros.velocidad.maximo)
+   val rutas =grafito.rutas(intersecciones.toArray,grafito.g,vias,vehiculos.length)
+   val viajes =Viaje.crearViajes(vehiculos,rutas)
    val cantCarro = vehiculos.filter(_.isInstanceOf[Carro]).length
    val cantMoto = vehiculos.filter(_.isInstanceOf[Moto]).length
    val cantBus = vehiculos.filter(_.isInstanceOf[Bus]).length
@@ -62,20 +55,17 @@ object Simulacion extends App with Runnable{
    val longitudProm = {val longitudes=for(x<-grafito.g.edges.toEdgeInSet) yield x.weight
     longitudes.sum/longitudes.size}
    val cantIntersecciones = intersecciones.size
-   
    val resultInter = ResultadoIntersecciones(50,46,5,3)
-   
    val b = grafito.g.edges
-   
    val resulV = ResultadoVehiculos(cantVehiculos,cantCarro,cantMoto,cantBus,cantCamion,cantMotoTaxi)
    val malla = ResultadoMallaVial(cantVias,cantIntersecciones,viasUnSentido,viasDobleSentido,50,100,longitudProm.toInt,resultInter)
    val time = ResultadoTiempos(150,12)
    val vel = ResultadoVelocidades(97,51,77)
    val dist = ResultadoDistancias(100,100,100)
    val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist)
-   json.escribirDatos(resultados)
+   //json.escribirDatos(resultados)
    
-   run()
+   //run()
    
    override def run(){
    Grafica.graficarVias(vias)
