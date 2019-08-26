@@ -1,12 +1,15 @@
 package rectas
 import puntos._
 import scala.collection.mutable.ArrayBuffer
+import objetosTransito.Semaforo
 
 case class Via(origenR : Interseccion, finR : Interseccion)(velMax : Int,
           tipo : TipoVia,val sentido : Sentido,numero : String,val _nombre : String) extends Recta{
   type T = Interseccion
   val origen:T = origenR
   val fin:T = finR
+  var semaforoO : Semaforo = null
+  var semaforoD : Semaforo = null
   calcular()
   def nombre=_nombre
 }

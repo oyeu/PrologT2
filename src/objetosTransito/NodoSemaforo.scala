@@ -1,8 +1,8 @@
 package objetosTransito
 
 import rectas.Via
-
-class NodoSemaforo(arreglo : Array[Semaforo],tiempoAmarillo : Int) {
+import scala.collection.mutable.ArrayBuffer
+class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int) {
   private var semaforoActual = 0
   arreglo(semaforoActual).cambiarEstado
   private var tiempoTranscurrido = 0
@@ -26,7 +26,6 @@ class NodoSemaforo(arreglo : Array[Semaforo],tiempoAmarillo : Int) {
   
   def incrementarTiempo = {
     tiempoTranscurrido +=1
-    println(s"""${arreglo(semaforoActual).nombre} ${arreglo(semaforoActual).estado} ${tiempoTranscurrido}""")
     if(arreglo(semaforoActual).estado == "Verde"){
       if(tiempoTranscurrido > arreglo(semaforoActual).tiempoVerde){
         cambiarEstadoSemaforoActual

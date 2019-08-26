@@ -1,6 +1,8 @@
 package simulacion
 import puntos._
-
+import objetosTransito.NodoSemaforo
+import scala.collection.mutable.ArrayBuffer
+import objetosTransito.Semaforo
 import scala.io.Source
 import movil._
 import movil.tiposVehiculos._
@@ -25,6 +27,7 @@ import scalax.collection.edge.WDiEdge
 import scalax.collection.edge.Implicits._
 import scalax.collection.GraphTraversal._
 import scalax.collection.GraphLike
+import java.util.Random
 
 object Simulacion extends App with Runnable{
   
@@ -36,6 +39,31 @@ object Simulacion extends App with Runnable{
    val grafito = GrafoVia
    val intersecciones = Interseccion.cargarIntersecciones
    val vias = Via.cargarVias(intersecciones)
+   val tiempoVerde = 5
+   val tiempoAmarillo = 8
+   for(i <- vias){
+     i.semaforoD = new Semaforo(tiempoVerde)
+     if(i.sentido._isDobleVia){
+       i.semaforoO = new Semaforo(tiempoVerde)
+     }
+   }
+   var nodosSemaforos = ArrayBuffer[NodoSemaforo]()
+   for(i <- intersecciones){
+     var Semaforos = ArrayBuffer[Semaforo]()
+     for(j <- vias){
+       if(j.origen.equals(i._2)){
+         Semaforos += j.semaforoO
+       }
+     }
+     for(j <- vias){
+       if(j.origen.equals(i)){
+         Semaforos += j.semaforoD
+       }
+     }
+     if(!Semaforos.isEmpty){
+       nodosSemaforos += new NodoSemaforo(Semaforos,tiempoAmarillo)
+     }
+   }
    grafito.construir(vias)
    val vehiculos =  Vehiculo.crearVehiculos(parametros.vehiculos.minimo, parametros.velocidad.minimo, 
        Array(parametros.proporciones.carros, parametros.proporciones.motos, parametros.proporciones.buses, parametros.proporciones.camiones,
@@ -81,5 +109,4 @@ object Simulacion extends App with Runnable{
      }
    
   }
-   
 }

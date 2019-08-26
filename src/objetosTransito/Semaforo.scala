@@ -1,10 +1,9 @@
 package objetosTransito
 
-class Semaforo(val tiempoVerde : Int,_nombre : String) {
+class Semaforo(val tiempoVerde : Int) {
   private var _estado : String = "Rojo"
   
   def estado =  _estado
-  def nombre = _nombre
   
   def cambiarEstado = _estado match{
     case "Amarillo" => _estado = "Rojo"
