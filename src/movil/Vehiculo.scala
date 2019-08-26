@@ -6,7 +6,7 @@ import movil.tiposVehiculos._
 import grafo._
 import rectas._
 
-abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad) extends Movil(_posicion, vel) with MovimientoUniforme{
+abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, aceleracion:Int) extends Movil(_posicion, vel,aceleracion) with MovimientoUniforme{
   def placa = _placa
 }
 
@@ -20,13 +20,15 @@ object Vehiculo {
      for(i <- totalVehiculos){
        for(j <- 0 to i){
          val vel = (rand.nextInt((Vmax - Vmin)) + Vmin).toInt
+         val aceleracion = (rand.nextInt(30))
          vehiculos += seleccionarVehiculo(contador)
+         
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
-           case 0 => new movil.tiposVehiculos.Carro(Carro.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()))
-           case 1 => new movil.tiposVehiculos.Moto(Moto.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()))
-           case 2 => new movil.tiposVehiculos.Bus(Bus.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()))
-           case 3 => new movil.tiposVehiculos.Camion(Camion.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()))
-           case _ => new MotoTaxi(MotoTaxi.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()))
+           case 0 => new movil.tiposVehiculos.Carro(Carro.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
+           case 1 => new movil.tiposVehiculos.Moto(Moto.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
+           case 2 => new movil.tiposVehiculos.Bus(Bus.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
+           case 3 => new movil.tiposVehiculos.Camion(Camion.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
+           case _ => new MotoTaxi(MotoTaxi.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
          }
        }
        contador+=1

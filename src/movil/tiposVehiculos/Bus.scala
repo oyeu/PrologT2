@@ -1,7 +1,7 @@
 package movil.tiposVehiculos
 import movil._
 import puntos._
-class Bus(placa:String)(posicion:Punto,velocidad:Velocidad) extends Vehiculo(placa)(posicion,velocidad){
+class Bus(placa:String)(posicion:Punto,velocidad:Velocidad,aceleracion:Int) extends Vehiculo(placa)(posicion,velocidad,aceleracion){
 }
 
 object Bus {
