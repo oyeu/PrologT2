@@ -4,9 +4,7 @@ import scala.collection.mutable.ArrayBuffer
 class Interseccion(x: Double,y: Double, _nombre : Option[String]) extends Punto(x,y){
 
   def nombre=_nombre.getOrElse("sin nombre")
-  override def toString() : String = {
-    nombre
-  }
+  override def toString() : String =nombre
 }
 object Interseccion {
   def cargarIntersecciones:Map[String,Interseccion] = {

@@ -42,6 +42,14 @@ object Simulacion extends App with Runnable{
            parametros.proporciones.motoTaxis),parametros.vehiculos.maximo,parametros.velocidad.maximo)
    val rutas =grafito.rutas(intersecciones.toArray,grafito.g,vias,vehiculos.length)
    val viajes =Viaje.crearViajes(vehiculos,rutas)
+   //println(viajes.head.ruta.head._2.origen)
+   //println(viajes.head.ruta.head._2.fin)
+   //println(viajes.head.destino)
+   //println(viajes.head.ruta.head._2.angulo)
+   //println(viajes.head.ruta.head._1)
+   //println(viajes.head.vehiculo.velocidad.direccion)
+   //println(viajes.head.vehiculo.posicion)
+   
    val cantCarro = vehiculos.filter(_.isInstanceOf[Carro]).length
    val cantMoto = vehiculos.filter(_.isInstanceOf[Moto]).length
    val cantBus = vehiculos.filter(_.isInstanceOf[Bus]).length
@@ -65,18 +73,18 @@ object Simulacion extends App with Runnable{
    val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist)
    //json.escribirDatos(resultados)
    
-   //run()
+   run()
    
    override def run(){
    Grafica.graficarVias(vias)
    Grafica.graficarVehiculos(vehiculos)
      while(true){
-       vehiculos.map(_.mover(dt))
+       viajes.map(_.movimiento(dt))
        t=t+dt
        Grafica.graficarVehiculos(vehiculos)
        var cont=0
-       for (x<-vehiculos) if(!x.fin) cont+=1
-       if(cont==vehiculos.length) {println(t); break}
+       for (x<-viajes) if(x.fin) cont+=1
+       if(cont==viajes.length) {println(t); break}
        Thread.sleep(tRefresh)
      }
    
