@@ -18,6 +18,7 @@ import javax.swing.JFrame
 import javax.swing.JPanel
 import java.util.Random
 import org.jfree.util.ShapeUtilities
+import objetosTransito.NodoSemaforo
 object Grafica extends JFrame{
   var datos : XYSeriesCollection = new XYSeriesCollection()
   
@@ -147,7 +148,6 @@ object Grafica extends JFrame{
     
     
   }
-  
   def obtienePanel() = {
     new ChartPanel(grafica)
   }  
