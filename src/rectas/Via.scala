@@ -3,7 +3,7 @@ import puntos._
 import scala.collection.mutable.ArrayBuffer
 import objetosTransito.Semaforo
 
-case class Via(origenR : Interseccion, finR : Interseccion)(velMax : Int,
+case class Via(origenR : Interseccion, finR : Interseccion)(_velMax : Int,
           tipo : TipoVia,val sentido : Sentido,numero : String,val _nombre : String) extends Recta{
   type T = Interseccion
   val origen:T = origenR
@@ -12,6 +12,7 @@ case class Via(origenR : Interseccion, finR : Interseccion)(velMax : Int,
   var semaforoD : Semaforo = null
   calcular()
   def nombre=_nombre
+  def velMax = _velMax
 }
 object Via{
   var vias = ArrayBuffer[Via]()

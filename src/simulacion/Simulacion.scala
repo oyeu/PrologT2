@@ -28,6 +28,7 @@ import scalax.collection.edge.Implicits._
 import scalax.collection.GraphTraversal._
 import scalax.collection.GraphLike
 import java.util.Random
+import objetosTransito.CamaraFotoDeteccion
 
 object Simulacion extends App with Runnable{
   
@@ -76,10 +77,19 @@ object Simulacion extends App with Runnable{
    val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist)
    //json.escribirDatos(resultados)
    
+   val camaras =  {
+     var arreglo = ArrayBuffer[CamaraFotoDeteccion]()
+     for(i <- vias){
+       arreglo += new CamaraFotoDeteccion(i)
+     }
+     arreglo
+   }
+   
    run()
    
    override def run(){
    Grafica.graficarVias(vias)
+   Grafica.graficarCamaras(camaras.toArray)
    Grafica.graficarVehiculos(vehiculos)
      while(true){
        viajes.map(_.movimiento(dt))

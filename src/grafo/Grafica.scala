@@ -19,6 +19,8 @@ import javax.swing.JPanel
 import java.util.Random
 import org.jfree.util.ShapeUtilities
 import objetosTransito.NodoSemaforo
+import objetosTransito.CamaraFotoDeteccion
+
 object Grafica extends JFrame{
   var datos : XYSeriesCollection = new XYSeriesCollection()
   
@@ -30,6 +32,7 @@ object Grafica extends JFrame{
   val camiones:XYSeries = new XYSeries("camiones")
   val motoTaxis:XYSeries = new XYSeries("motoTaxis")
   val buses:XYSeries = new XYSeries("buses")
+  val semaforos :XYSeries = new XYSeries("semaforos")
   
   def graficarVias (arreglo : Array[Via]){
         for(a <- arreglo){
@@ -75,6 +78,7 @@ object Grafica extends JFrame{
     plot.setBackgroundPaint(Color.white)
     plot.setRenderer(rendered)
   
+    datos.addSeries(semaforos)
     datos.addSeries(carros)
     datos.addSeries(motos)
     datos.addSeries(camiones)
@@ -147,6 +151,19 @@ object Grafica extends JFrame{
     
     
     
+  }
+  
+  def graficarCamaras(arreglo : Array[CamaraFotoDeteccion]){
+     semaforos.clear()
+     for(a <- arreglo){
+       var x = a.punto.x
+       var y = a.punto.y
+       semaforos.add(x,y)
+     }
+     rendered.setSeriesLinesVisible(datos.getSeriesCount - 6, false)
+     rendered.setSeriesPaint(datos.getSeriesCount - 6, Color.BLUE)
+     rendered.setSeriesShapesVisible(datos.getSeriesCount - 6, true)
+     rendered.setSeriesShape(datos.getSeriesCount - 16, ShapeUtilities.createRegularCross(5, 5))
   }
   def obtienePanel() = {
     new ChartPanel(grafica)
