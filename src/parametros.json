@@ -16,6 +16,10 @@
 		"buses": 0.15,
 		"camiones": 0.1,
 		"motoTaxis": 0.05
-	}
+	}, 
+	"aceleración": { 
+		"mínimo": 5,
+		"máximo": 20 
+	},
 
 }

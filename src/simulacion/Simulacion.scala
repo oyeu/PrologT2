@@ -48,7 +48,7 @@ object Simulacion extends App with Runnable{
      }
    }
    var nodosSemaforos = NodoSemaforo.nodosSemaforos(intersecciones,vias,tiempoAmarillo)
-   
+   println("pausa")
    
    grafito.construir(vias)
    val vehiculos =  Vehiculo.crearVehiculos(parametros.vehiculos.minimo, parametros.velocidad.minimo, 

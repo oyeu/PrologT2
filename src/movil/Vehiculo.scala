@@ -6,12 +6,12 @@ import movil.tiposVehiculos._
 import grafo._
 import rectas._
 
-abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, aceleracion:Int) extends Movil(_posicion, vel,aceleracion) with MovimientoUniforme{
+abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, aceleracion:Int) extends Movil(_posicion, vel,aceleracion) with MovimientoUniformeAcelerado{
   def placa = _placa
 }
 
 object Vehiculo {
-  def crearVehiculos(minV:Int,Vmin:Int,proporciones:Array[Double],maxV : Int, Vmax : Int):Array[Vehiculo]={
+  val crearVehiculos=(minV:Int,Vmin:Int,proporciones:Array[Double],maxV : Int, Vmax : Int)=>{
      var vehiculos = ArrayBuffer[Vehiculo]()
      var numAutos = (Math.random()*minV) + maxV
      val totalVehiculos = for(x<-proporciones) yield (x*numAutos).round.toInt
@@ -24,11 +24,11 @@ object Vehiculo {
          vehiculos += seleccionarVehiculo(contador)
          
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {
-           case 0 => new movil.tiposVehiculos.Carro(Carro.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
-           case 1 => new movil.tiposVehiculos.Moto(Moto.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
-           case 2 => new movil.tiposVehiculos.Bus(Bus.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
-           case 3 => new movil.tiposVehiculos.Camion(Camion.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
-           case _ => new MotoTaxi(MotoTaxi.generarPlaca)(new Punto(0,0),new Velocidad(vel,Angulo()),aceleracion)
+           case 0 => new movil.tiposVehiculos.Carro(Carro.generarPlaca)(new Punto(0,0),Velocidad(0,Angulo(),vel),aceleracion)
+           case 1 => new movil.tiposVehiculos.Moto(Moto.generarPlaca)(new Punto(0,0),Velocidad(0,Angulo(),vel),aceleracion)
+           case 2 => new movil.tiposVehiculos.Bus(Bus.generarPlaca)(new Punto(0,0),Velocidad(0,Angulo(),vel),aceleracion)
+           case 3 => new movil.tiposVehiculos.Camion(Camion.generarPlaca)(new Punto(0,0),Velocidad(0,Angulo(),vel),aceleracion)
+           case _ => new MotoTaxi(MotoTaxi.generarPlaca)(new Punto(0,0),Velocidad(0,Angulo(),vel),aceleracion)
          }
        }
        contador+=1
