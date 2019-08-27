@@ -42,49 +42,26 @@ object Simulacion extends App with Runnable{
    val tiempoVerde = 5
    val tiempoAmarillo = 8
    for(i <- vias){
-     i.semaforoD = new Semaforo(tiempoVerde)
-     if(i.sentido._isDobleVia){
-       i.semaforoO = new Semaforo(tiempoVerde)
+     i.semaforoD = Semaforo(tiempoVerde)
+     if(i.sentido.isDobleVia){
+       i.semaforoO = Semaforo(tiempoVerde)
      }
    }
-   var nodosSemaforos = ArrayBuffer[NodoSemaforo]()
-   for(i <- intersecciones){
-     var Semaforos = ArrayBuffer[Semaforo]()
-     for(j <- vias){
-       if(j.origen.equals(i._2)){
-         Semaforos += j.semaforoO
-       }
-     }
-     for(j <- vias){
-       if(j.origen.equals(i)){
-         Semaforos += j.semaforoD
-       }
-     }
-     if(!Semaforos.isEmpty){
-       nodosSemaforos += new NodoSemaforo(Semaforos,tiempoAmarillo)
-     }
-   }
+   var nodosSemaforos = NodoSemaforo.nodosSemaforos(intersecciones,vias,tiempoAmarillo)
+   
+   
    grafito.construir(vias)
    val vehiculos =  Vehiculo.crearVehiculos(parametros.vehiculos.minimo, parametros.velocidad.minimo, 
        Array(parametros.proporciones.carros, parametros.proporciones.motos, parametros.proporciones.buses, parametros.proporciones.camiones,
            parametros.proporciones.motoTaxis),parametros.vehiculos.maximo,parametros.velocidad.maximo)
    val rutas =grafito.rutas(intersecciones.toArray,grafito.g,vias,vehiculos.length)
    val viajes =Viaje.crearViajes(vehiculos,rutas)
-   //println(viajes.head.ruta.head._2.origen)
-   //println(viajes.head.ruta.head._2.fin)
-   //println(viajes.head.destino)
-   //println(viajes.head.ruta.head._2.angulo)
-   //println(viajes.head.ruta.head._1)
-   //println(viajes.head.vehiculo.velocidad.direccion)
-   //println(viajes.head.vehiculo.posicion)
-   
    val cantCarro = vehiculos.filter(_.isInstanceOf[Carro]).length
    val cantMoto = vehiculos.filter(_.isInstanceOf[Moto]).length
    val cantBus = vehiculos.filter(_.isInstanceOf[Bus]).length
    val cantCamion = vehiculos.filter(_.isInstanceOf[Camion]).length
    val cantMotoTaxi = vehiculos.filter(_.isInstanceOf[MotoTaxi]).length
    val cantVehiculos = vehiculos.length
-   
    val viasDobleSentido = vias.filter(_.sentido.isDobleVia).length
    val viasUnSentido = vias.filter(!_.sentido.isDobleVia).length
    val cantVias = vias.length
@@ -109,6 +86,7 @@ object Simulacion extends App with Runnable{
      while(true){
        viajes.map(_.movimiento(dt))
        t=t+dt
+       //nodosSemaforos.map(_.incrementarTiempo)
        Grafica.graficarVehiculos(vehiculos)
        var cont=0
        for (x<-viajes) if(x.fin) cont+=1

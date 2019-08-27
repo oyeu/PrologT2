@@ -22,7 +22,7 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
         if(math.sqrt((math.pow(vehiculo.posicion.x-destino.x, 2)+math.pow(vehiculo.posicion.y-destino.y,2)))<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
-          else destino=(Viaje.alinear(this))
+          else {destino=(Viaje.alinear(this));viaActual=ruta.head._2}
         }
       }
       case true=>s"El viaje del carro ${vehiculo.placa} ha terminado"

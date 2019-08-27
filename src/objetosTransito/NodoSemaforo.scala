@@ -1,8 +1,9 @@
 package objetosTransito
 
 import rectas.Via
+import puntos._
 import scala.collection.mutable.ArrayBuffer
-class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int) {
+class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int,val inter:Interseccion) {
   private var semaforoActual = 0
   arreglo(semaforoActual).cambiarEstado
   private var tiempoTranscurrido = 0
@@ -37,5 +38,27 @@ class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int) {
         tiempoTranscurrido = 0
       }
     }
+  }
+}
+object NodoSemaforo {
+  val nodosSemaforos = (intersecciones:Map[String,Interseccion], vias:Array[Via],tAmarillo:Int)=>{
+   var nodosSemaforos = ArrayBuffer[NodoSemaforo]()
+   for(i <- intersecciones){
+     var Semaforos = ArrayBuffer[Semaforo]()
+     for(j <- vias){
+       if(j.origen.equals(i._2)){
+         Semaforos += j.semaforoO
+       }
+     }
+     for(j <- vias){
+       if(j.origen.equals(i)){
+         Semaforos += j.semaforoD
+       }
+     }
+     if(!Semaforos.isEmpty){
+       nodosSemaforos += new NodoSemaforo(Semaforos,tAmarillo,i._2)
+     }
+   }
+   nodosSemaforos.toArray
   }
 }

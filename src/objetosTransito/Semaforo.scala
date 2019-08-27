@@ -1,6 +1,6 @@
 package objetosTransito
 
-class Semaforo(val tiempoVerde : Int) {
+case class Semaforo(val tiempoVerde : Int) {
   private var _estado : String = "Rojo"
   
   def estado =  _estado
