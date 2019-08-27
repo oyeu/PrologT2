@@ -2,7 +2,7 @@ package objetosTransito
 import movil.Vehiculo
 import scala.collection.mutable.ArrayBuffer
 import rectas.Via
-protected class Comparendo(vehiculo : Vehiculo,velVehiculo : Int,velMax : Int, nombreVia : String) {
+protected class Comparendo(vehiculo : Vehiculo,velVehiculo :Double,velMax :Double, nombreVia : String) {
   
 }
 
