@@ -23,6 +23,8 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
       case false =>{
         if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<20)) 1
         else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<40)2
+        else 3
+          vehiculo.mover(dt)
       }
       case true =>
     }
