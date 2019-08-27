@@ -48,8 +48,6 @@ object Simulacion extends App with Runnable{
      }
    }
    var nodosSemaforos = NodoSemaforo.nodosSemaforos(intersecciones,vias,tiempoAmarillo)
-   println("pausa")
-   
    grafito.construir(vias)
    val vehiculos =  Vehiculo.crearVehiculos(parametros.vehiculos.minimo, parametros.velocidad.minimo, 
        Array(parametros.proporciones.carros, parametros.proporciones.motos, parametros.proporciones.buses, parametros.proporciones.camiones,
@@ -84,7 +82,7 @@ object Simulacion extends App with Runnable{
    Grafica.graficarVias(vias)
    Grafica.graficarVehiculos(vehiculos)
      while(true){
-       viajes.map(_.movimiento(dt))
+       //viajes.map(_.movimiento(dt))
        t=t+dt
        //nodosSemaforos.map(_.incrementarTiempo)
        Grafica.graficarVehiculos(vehiculos)

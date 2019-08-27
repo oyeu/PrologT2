@@ -39,9 +39,12 @@ class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int,val inte
       }
     }
   }
+  
+  def getArreglo = arreglo
 }
 object NodoSemaforo {
-  val nodosSemaforos = (intersecciones:Map[String,Interseccion], vias:Array[Via],tAmarillo:Int)=>{
+  val nodosSemaforos = (intersecciones : Map[String,Interseccion],
+                        vias:Array[Via],tAmarillo : Int) => {
    var nodosSemaforos = ArrayBuffer[NodoSemaforo]()
    for(i <- intersecciones){
      var Semaforos = ArrayBuffer[Semaforo]()
@@ -51,7 +54,7 @@ object NodoSemaforo {
        }
      }
      for(j <- vias){
-       if(j.origen.equals(i)){
+       if(j.fin.equals(i._2)){
          Semaforos += j.semaforoD
        }
      }
@@ -59,6 +62,7 @@ object NodoSemaforo {
        nodosSemaforos += new NodoSemaforo(Semaforos,tAmarillo,i._2)
      }
    }
-   nodosSemaforos.toArray
+   
+   nodosSemaforos
   }
 }
