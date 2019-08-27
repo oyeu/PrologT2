@@ -3,7 +3,7 @@ import movil._
 import java.awt.Color
 import puntos._
 
-class MotoTaxi(placa:String)(posicion:Punto,velocidad:Velocidad,aceleracion:Int) extends Vehiculo(placa)(posicion,velocidad,aceleracion){
+class MotoTaxi(placa:String)(posicion:Punto,velocidad:Velocidad,aceleracion:Double) extends Vehiculo(placa)(posicion,velocidad,aceleracion){
 }
 object MotoTaxi {
   def generarPlaca : String = {

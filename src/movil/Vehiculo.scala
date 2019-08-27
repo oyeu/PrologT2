@@ -6,21 +6,21 @@ import movil.tiposVehiculos._
 import grafo._
 import rectas._
 
-abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, aceleracion:Int) extends Movil(_posicion, vel,aceleracion) with MovimientoUniformeAcelerado{
+abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, aceleracion:Double) extends Movil(_posicion, vel,aceleracion) with MovimientoUniformeAcelerado{
   def placa = _placa
 }
 
 object Vehiculo {
   val crearVehiculos=(minV:Int,Vmin:Int,proporciones:Array[Double],maxV : Int, Vmax : Int)=>{
      var vehiculos = ArrayBuffer[Vehiculo]()
-     var numAutos = (Math.random()*minV) + maxV
+     var numAutos = 1//(Math.random()*minV) + maxV
      val totalVehiculos = for(x<-proporciones) yield (x*numAutos).round.toInt
      var contador = 0
      val rand = new Random();
      for(i <- totalVehiculos){
        for(j <- 0 to i){
          val vel = (rand.nextInt((Vmax - Vmin)) + Vmin).toInt
-         val aceleracion = (rand.nextInt(30))
+         val aceleracion = (rand.nextInt(15))+5
          vehiculos += seleccionarVehiculo(contador)
          
          def seleccionarVehiculo(i : Int) : Vehiculo = i match {

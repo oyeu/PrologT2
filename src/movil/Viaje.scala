@@ -5,8 +5,9 @@ import objetosTransito._
 import scala.collection.mutable.ArrayBuffer
 
 class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
-  var _destino:Interseccion = Viaje.alinear(this)
   var _semaforoDestino:Semaforo = null
+  var _destino:Interseccion=null
+  Viaje.alinear(this)
   var viaActual = ruta.head._2
   var _fin = false
   def semaforo = _semaforoDestino
@@ -21,10 +22,38 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
   val movimiento=(dt:Int)=>{
     fin match{
       case false =>{
-        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<20)) 1
-        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<40)2
-        else 3
-          vehiculo.mover(dt)
+        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<20)) {
+          vehiculo.mover(dt,false)
+          val epsilon = 300
+          if(Viaje.distancia(this)<epsilon){
+          ruta=(ruta.drop(1))
+          if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
+          else Viaje.alinear(this)
+          }
+        }
+        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<40){
+          vehiculo.tasaAceleracion match {
+            case x if(x<0)=>{
+              vehiculo.mover(dt,false)
+              println("pausa")
+            }
+            case _=>{
+              vehiculo.tasaAceleracion=vehiculo.calcularTasaFrenado(Viaje.distancia(this))
+              vehiculo.mover(dt,false)
+              println("estoy frenando")
+            }
+          }
+        }
+        else {
+          vehiculo.mover(dt,false)
+          val epsilon =300
+          if(Viaje.distancia(this)<epsilon){
+          ruta=(ruta.drop(1))
+          if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
+          else Viaje.alinear(this)
+          }
+          println("pausa")
+        }
       }
       case true =>
     }
@@ -45,12 +74,12 @@ object Viaje {
       v.vehiculo.velocidad.direccion.valor_=(v.ruta.head._2.angulo.valor)
       v.vehiculo.cambioPosicion(v.ruta.head._2.origen)
       v.semaforoDestino_=(v.ruta.head._2.semaforoD)
-      v.ruta.head._2.fin}
+      v.destino_=(v.ruta.head._2.fin)}
     else{
       v.vehiculo.velocidad.direccion.valor_=(Angulo.anguloOpuesto(v.ruta.head._2))
       v.vehiculo.cambioPosicion(v.ruta.head._2.fin)
       v.semaforoDestino_=(v.ruta.head._2.semaforoO)
-      v.ruta.head._2.origen} 
+      v.destino_=(v.ruta.head._2.origen)} 
   }
   val distancia=(v:Viaje)=> {
     val dist = Math.sqrt(Math.pow(v.destino.x-v.vehiculo.posicion.x, 2)+Math.pow(v.destino.y-v.vehiculo.posicion.y, 2))

@@ -1,7 +1,7 @@
 package movil.tiposVehiculos
 import movil._
 import puntos._
-class Camion(placa:String)(posicion:Punto,velocidad:Velocidad,aceleracion:Int) extends Vehiculo(placa)(posicion,velocidad,aceleracion){
+class Camion(placa:String)(posicion:Punto,velocidad:Velocidad,aceleracion:Double) extends Vehiculo(placa)(posicion,velocidad,aceleracion){
 }
 object Camion {
   def generarPlaca : String = {

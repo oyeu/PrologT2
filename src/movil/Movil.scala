@@ -2,9 +2,9 @@ package movil
 import puntos._
 
 
-abstract class Movil (var posicion : Punto,var  velocidad : Velocidad,var tasaAceleracion:Int){
+abstract class Movil (var posicion : Punto,var  velocidad : Velocidad,var tasaAceleracion:Double){
   val aceleracion = tasaAceleracion
-  val mover:(Int)=>Unit
+  val mover:(Int,Boolean)=>Unit
   def getAngulo = velocidad.direccion.valor
   val velcrucero=()=>tasaAceleracion=0
   val acelerar=()=>tasaAceleracion=aceleracion
@@ -12,6 +12,9 @@ abstract class Movil (var posicion : Punto,var  velocidad : Velocidad,var tasaAc
     posicion.x=(punto.x)
     posicion.y=(punto.y)
   }
-  val calcularTasaFrenado=1
+  val calcularTasaFrenado=(distancia:Double)=>{
+    val tasa = ((math.pow(velocidad.magnitud, 2))/(2*distancia))*(-1)
+    tasa
+  }
   
 }

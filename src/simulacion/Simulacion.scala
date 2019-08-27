@@ -82,7 +82,7 @@ object Simulacion extends App with Runnable{
    Grafica.graficarVias(vias)
    Grafica.graficarVehiculos(vehiculos)
      while(true){
-       //viajes.map(_.movimiento(dt))
+       viajes.map(_.movimiento(dt))
        t=t+dt
        //nodosSemaforos.map(_.incrementarTiempo)
        Grafica.graficarVehiculos(vehiculos)
