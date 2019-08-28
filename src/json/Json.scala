@@ -1,5 +1,6 @@
 package json
 import puntos._
+
 import resultados._
 import parametros._
 import java.io._
@@ -64,7 +65,10 @@ class Json{
         ("distancias" ->
           ("minima" -> resultados.distancias.minima) ~
           ("maxima" -> resultados.distancias.maxima) ~
-          ("promedio" -> resultados.distancias.promedio)))
+          ("promedio" -> resultados.distancias.promedio)) ~
+        ("comparendos" ->
+          ("cantidad" -> resultados.comparendos.cantidad) ~
+          ("promedioPorcentajeExceso" -> resultados.comparendos.promedioPorcentajeExceso)))
   
     println(prettyRender(json))
     println(json.toString())

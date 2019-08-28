@@ -1,6 +1,7 @@
 package simulacion
 import puntos._
 import objetosTransito.NodoSemaforo
+import objetosTransito.Comparendo
 import conexion.Conexion
 import scala.collection.mutable.ArrayBuffer
 import objetosTransito.Semaforo
@@ -38,16 +39,16 @@ object Simulacion extends App with Runnable{
    var t=0
    var dt= parametros.dt
    var tRefresh = parametros.tRefresh
-   //Conexion.obtenerVias()
+   //Conexion.insertarDatosViales()
    val grafito = GrafoVia
    val intersecciones = Conexion.obtenerIntersecciones()
    val vias = Conexion.obtenerVias()
-   val tiempoVerde = 5
-   val tiempoAmarillo = 8
+   val tiempoVerde =  (Math.random()*parametros.semaforos.minTiempoVerde) + parametros.semaforos.maxTiempoVerde
+   val tiempoAmarillo = parametros.semaforos.tiempoAmarillo
    for(i <- vias){
-     i.semaforoD = Semaforo(tiempoVerde)
+     i.semaforoD = Semaforo(tiempoVerde.toInt)
      if(i.sentido.isDobleVia){
-       i.semaforoO = Semaforo(tiempoVerde)
+       i.semaforoO = Semaforo(tiempoVerde.toInt)
      }
    }
    var nodosSemaforos = NodoSemaforo.nodosSemaforos(intersecciones,vias,tiempoAmarillo)
@@ -76,7 +77,9 @@ object Simulacion extends App with Runnable{
    val time = ResultadoTiempos(150,12)
    val vel = ResultadoVelocidades(97,51,77)
    val dist = ResultadoDistancias(100,100,100)
-   val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist)
+   val prom = 10.4//{val porcentaje = for(x <- Comparendo.listaComparendos) yield 100*x.velVehiculo/x.velMax-100)}
+   val comp = ResultadoComparendos(Comparendo.listaComparendos.size,prom)
+   val resultados = ResultadosSimulacion(resulV,malla,time,vel,dist,comp)
    //json.escribirDatos(resultados)
    
    val camaras =  {
