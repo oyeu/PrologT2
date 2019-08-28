@@ -1,8 +1,11 @@
 package movil
 import rectas._
+import json.Json
+import parametros._
 import puntos._
 import objetosTransito._
 import scala.collection.mutable.ArrayBuffer
+
 
 class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
   var _semaforoDestino:Semaforo = null
@@ -19,19 +22,21 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
   def ruta_=(ruta:Array[(Boolean,Via)])=_ruta=ruta
   def semaforoDestino_=(sem:Semaforo)=_semaforoDestino=sem
   def destino_=(interseccion:Interseccion) = _destino =interseccion
+  val json = new Json()
+  var parametros = json.cargarDatos()
   val movimiento=(dt:Int)=>{
     fin match{
       case false =>{
-        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<20)) {
+        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<parametros.distanciasFrenadoVehiculos.XSemaforoAmarilloContinuar)) {
           vehiculo.mover(dt,false)
-          val epsilon = 20
+          val epsilon = 30
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
           else Viaje.alinear(this)
           }
         }
-        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<40){
+        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<parametros.distanciasFrenadoVehiculos.XSemaforoFrenar){
           vehiculo.tasaAceleracion match {
             case x if(x<0)=>{
               vehiculo.mover(dt,true)
@@ -46,13 +51,12 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
         }
         else {
           vehiculo.mover(dt,false)
-          val epsilon =20
+          val epsilon =30
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
           else Viaje.alinear(this)
           }
-          println("pausa")
         }
       }
       case true =>

@@ -16,16 +16,10 @@ import movil._
 import resultados._
 
 case class ResultadosSimulacion (vehiculos: ResultadoVehiculos, mallaVial: ResultadoMallaVial, tiempos: ResultadoTiempos,
-    velocidades: ResultadoVelocidades, distancias: ResultadoDistancias){
+    velocidades: ResultadoVelocidades, distancias: ResultadoDistancias, comparendos: ResultadoComparendos){
   
   def longitudPromedio(grafo:Graph[Punto,WDiEdge]):Double ={
     val longitudes=for(x<-grafo.edges) yield x.weight
     longitudes.sum/longitudes.size
   }
-  
-  /*def distanciaRecorrida(vehiculos:Array[Vehiculo],grafo:Graph[Punto,WDiEdge]):Array[Double]={
-   type T = grafo.NodeT
-   val distancias =for(x<-vehiculos) yield (grafo.get(x.posicion).shortestPathTo(grafo.get(x.destino))).get.weight 
-   distancias
-  }*/
 }
