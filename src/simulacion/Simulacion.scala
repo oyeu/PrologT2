@@ -39,10 +39,9 @@ object Simulacion extends App with Runnable{
    var t=0
    var dt= parametros.dt
    var tRefresh = parametros.tRefresh
-   //Conexion.insertarDatosViales()
+   //Conexion.insertarDatosViales() //DESCOMENTAR ESTA LINEA LA PRIMERA VEZ QUE SE EJECUTE PARA AÑADIR DATOS A NEO4J
    val grafito = GrafoVia
    val intersecciones = Conexion.obtenerIntersecciones()
-   println(intersecciones.size)
    val vias = Conexion.obtenerVias()
    val tiempoVerde =  (Math.random()*parametros.semaforos.minTiempoVerde) + parametros.semaforos.maxTiempoVerde
    val tiempoAmarillo = parametros.semaforos.tiempoAmarillo

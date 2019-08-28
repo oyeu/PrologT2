@@ -27,31 +27,29 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
   val movimiento=(dt:Int)=>{
     fin match{
       case false =>{
-        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<parametros.distanciasFrenadoVehiculos.XSemaforoAmarilloContinuar)) {
+        if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<80)) {
           vehiculo.mover(dt,false)
-          val epsilon = 30
+          val epsilon = 40
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
           else Viaje.alinear(this)
           }
         }
-        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<parametros.distanciasFrenadoVehiculos.XSemaforoFrenar){
+        else if ((semaforo.estado.equals("Amarillo")||semaforo.estado.equals("Rojo"))&&Viaje.distancia(this)<100){
           vehiculo.tasaAceleracion match {
             case x if(x<0)=>{
               vehiculo.mover(dt,true)
-              println("frenando")
             }
             case _=>{
               vehiculo.tasaAceleracion=vehiculo.calcularTasaFrenado(Viaje.distancia(this))
               vehiculo.mover(dt,true)
-              println("estoy frenando")
             }
           }
         }
         else {
           vehiculo.mover(dt,false)
-          val epsilon =30
+          val epsilon =40
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
