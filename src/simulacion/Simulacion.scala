@@ -84,7 +84,6 @@ object Simulacion extends App with Runnable{
      }
      arreglo
    }
-   
    run()
    
    override def run(){
@@ -94,7 +93,7 @@ object Simulacion extends App with Runnable{
      while(true){
        viajes.map(_.movimiento(dt))
        t=t+dt
-       nodosSemaforos.map(_.incrementarTiempo)
+       //nodosSemaforos.map(_.incrementarTiempo)
        Grafica.graficarVehiculos(vehiculos)
        var cont=0
        for (x<-viajes) if(x.fin) cont+=1
