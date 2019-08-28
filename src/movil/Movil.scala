@@ -13,7 +13,7 @@ abstract class Movil (var posicion : Punto,var  velocidad : Velocidad,var tasaAc
     posicion.y=(punto.y)
   }
   val calcularTasaFrenado=(distancia:Double)=>{
-    val tasa = ((math.pow(velocidad.magnitud, 2))/(2*distancia))*(-1)
+    val tasa = ((math.pow(Velocidad.kmAM(velocidad.magnitud), 2))/(2*distancia))*(-1)
     tasa
   }
   

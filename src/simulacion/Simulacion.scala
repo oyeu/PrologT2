@@ -38,16 +38,17 @@ object Simulacion extends App with Runnable{
    var t=0
    var dt= parametros.dt
    var tRefresh = parametros.tRefresh
-   //Conexion.obtenerVias()
+   //Conexion.insertarDatosViales()
    val grafito = GrafoVia
    val intersecciones = Conexion.obtenerIntersecciones()
+   println(intersecciones.size)
    val vias = Conexion.obtenerVias()
    val tiempoVerde = 5
    val tiempoAmarillo = 8
    for(i <- vias){
-     i.semaforoD = Semaforo(tiempoVerde)
+     i.semaforoD = Semaforo(tiempoVerde,i.fin)
      if(i.sentido.isDobleVia){
-       i.semaforoO = Semaforo(tiempoVerde)
+       i.semaforoO = Semaforo(tiempoVerde,i.origen)
      }
    }
    var nodosSemaforos = NodoSemaforo.nodosSemaforos(intersecciones,vias,tiempoAmarillo)
@@ -95,7 +96,7 @@ object Simulacion extends App with Runnable{
      while(true){
        viajes.map(_.movimiento(dt))
        t=t+dt
-       //nodosSemaforos.map(_.incrementarTiempo)
+       nodosSemaforos.map(_.incrementarTiempo)
        Grafica.graficarVehiculos(vehiculos)
        var cont=0
        for (x<-viajes) if(x.fin) cont+=1

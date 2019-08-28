@@ -24,6 +24,9 @@ trait MovimientoUniformeAcelerado {
         }
       }case true=>{
         velocidad.frenar(tasaAceleracion)
+        posicion.x=posicion.x+velocidad.vx*dt
+        posicion.y=posicion.y+velocidad.vy*dt
+        
       }
     }
     

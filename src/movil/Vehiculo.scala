@@ -13,7 +13,7 @@ abstract case class Vehiculo (_placa: String)(_posicion:Punto, vel : Velocidad, 
 object Vehiculo {
   val crearVehiculos=(minV:Int,Vmin:Int,proporciones:Array[Double],maxV : Int, Vmax : Int)=>{
      var vehiculos = ArrayBuffer[Vehiculo]()
-     var numAutos = (Math.random()*minV) + maxV
+     var numAutos = 1//(Math.random()*minV) + maxV
      val totalVehiculos = for(x<-proporciones) yield (x*numAutos).round.toInt
      var contador = 0
      val rand = new Random();

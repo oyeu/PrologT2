@@ -4,18 +4,19 @@ import rectas.Angulo
 
 case class Velocidad(var magnitud:Double=0,direccion:Angulo,val velcrucero:Double) {
   
-  def vx = Velocidad.kmPorM(magnitud)*math.cos(direccion.valor.toRadians)
-  def vy = Velocidad.kmPorM(magnitud)*math.sin(direccion.valor.toRadians)
-  val acelerar=(tasaAceleracion:Double)=> if(tasaAceleracion+magnitud>velcrucero) magnitud=velcrucero else magnitud=magnitud+tasaAceleracion
-  val frenar=(tasaAceleracion:Double)=>if(magnitud+tasaAceleracion<0) magnitud=0 else magnitud=magnitud+tasaAceleracion
+  def vx = Velocidad.kmAM(magnitud)*math.cos(direccion.valor.toRadians)
+  def vy = Velocidad.kmAM(magnitud)*math.sin(direccion.valor.toRadians)
+  val acelerar=(tasaAceleracion:Double)=> if(Velocidad.mAKm(tasaAceleracion)+magnitud>velcrucero) magnitud=velcrucero else magnitud=magnitud+Velocidad.mAKm(tasaAceleracion)
+  val frenar=(tasaAceleracion:Double)=>if(magnitud+Velocidad.mAKm(tasaAceleracion)<0) magnitud=0 else magnitud=magnitud+Velocidad.mAKm(tasaAceleracion)
 }
 
 object Velocidad {
-  def mPorKm(cantidad : Double) : Double = {
-    cantidad * 3.6
+  def mAKm(cantidad : Double) : Double = {
+    val kilometrosPorSegundoCuadrado:Double = cantidad/1000
+    kilometrosPorSegundoCuadrado
   }
   
-  def kmPorM(cantidad : Double) : Double = {
+  def kmAM(cantidad : Double) : Double = {
     val metrosPorSegundo:Double = ((cantidad *5)/18)
     metrosPorSegundo
   }

@@ -1,6 +1,7 @@
 package objetosTransito
+import puntos._
 
-case class Semaforo(val tiempoVerde : Int) {
+case class Semaforo(val tiempoVerde : Int,val interseccion:Interseccion) {
   private var _estado : String = "Rojo"
   
   def estado =  _estado
