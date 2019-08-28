@@ -13,13 +13,15 @@ class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int,val inte
     case "Amarillo" => {
       arreglo(semaforoActual).cambiarEstado
       cambiarSemaforoActual
-      arreglo(semaforoActual).cambiarEstado
+      val semaforoActualI = arreglo(semaforoActual)
+        if(semaforoActualI != null)  arreglo(semaforoActual).cambiarEstado  
+      }
     }
-  }
+  
   
   private def cambiarSemaforoActual = {
     if(semaforoActual + 1 < arreglo.length){
-      semaforoActual = semaforoActual+1
+      semaforoActual += 1
     }else{
       semaforoActual = 0
     }
@@ -27,6 +29,8 @@ class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int,val inte
   
   def incrementarTiempo = {
     tiempoTranscurrido +=1
+    val semaforoActualI = arreglo(semaforoActual)
+    if(semaforoActualI != null){
     if(arreglo(semaforoActual).estado == "Verde"){
       if(tiempoTranscurrido > arreglo(semaforoActual).tiempoVerde){
         cambiarEstadoSemaforoActual
@@ -37,6 +41,7 @@ class NodoSemaforo(arreglo : ArrayBuffer[Semaforo],tiempoAmarillo : Int,val inte
         cambiarEstadoSemaforoActual
         tiempoTranscurrido = 0
       }
+    }
     }
   }
   
