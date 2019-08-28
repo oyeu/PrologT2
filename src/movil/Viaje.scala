@@ -24,7 +24,7 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
       case false =>{
         if(semaforo.estado.equals("Amarillo")&&(Viaje.distancia(this)<20)) {
           vehiculo.mover(dt,false)
-          val epsilon = 30
+          val epsilon = 40
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
@@ -46,7 +46,7 @@ class Viaje (val _vehiculo:Vehiculo, var _ruta:Array[(Boolean,Via)]){
         }
         else {
           vehiculo.mover(dt,false)
-          val epsilon =30
+          val epsilon =40
           if(Viaje.distancia(this)<epsilon){
           ruta=(ruta.drop(1))
           if(ruta.isEmpty) {fin=true;vehiculo.cambioPosicion(destino)}
