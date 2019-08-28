@@ -1,6 +1,7 @@
 package simulacion
 import puntos._
 import objetosTransito.NodoSemaforo
+import conexion.Conexion
 import scala.collection.mutable.ArrayBuffer
 import objetosTransito.Semaforo
 import scala.io.Source
@@ -37,9 +38,10 @@ object Simulacion extends App with Runnable{
    var t=0
    var dt= parametros.dt
    var tRefresh = parametros.tRefresh
+   //Conexion.obtenerVias()
    val grafito = GrafoVia
-   val intersecciones = Interseccion.cargarIntersecciones
-   val vias = Via.cargarVias(intersecciones)
+   val intersecciones = Conexion.obtenerIntersecciones()
+   val vias = Conexion.obtenerVias()
    val tiempoVerde = 5
    val tiempoAmarillo = 8
    for(i <- vias){
